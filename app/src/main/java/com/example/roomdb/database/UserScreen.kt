@@ -35,6 +35,7 @@ fun UserScreen(
     val user by remember { userViewModel.user }.collectAsState()
 //    val users by remember { userViewModel.users }.collectAsState()
     val users by remember { userViewModel.flowUsers }.collectAsState(initial = emptyList())
+    val usersAndPet by remember { userViewModel.usersAndPets }.collectAsState(initial = emptyList())
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = "User Screen") })
@@ -58,11 +59,6 @@ fun UserScreen(
             }) {
                 Text(text = "Get User")
             }
-            Button(onClick = {
-                userViewModel.getAllUsersObservable()
-            }) {
-                Text(text = "Get All User")
-            }
 
             Button(onClick = {
                 userViewModel.insertUserAndPet(user = dummyUser, petName = "Comet")
@@ -70,6 +66,16 @@ fun UserScreen(
                 Text(text = "Insert User And Pet")
             }
 
+            Button(onClick = {
+                userViewModel.getAllUsersObservable()
+            }) {
+                Text(text = "Get All User")
+            }
+            Button(onClick = {
+                userViewModel.getUserAndPet()
+            }) {
+                Text(text = "Get Users and Pets")
+            }
             user?.let { user ->
                 Text(text = user.userId.toString())
                 Text(text = user.username)
@@ -79,6 +85,12 @@ fun UserScreen(
                 Text(text = user.userId.toString())
                 Text(text = user.username)
                 Text(text = user.createdAt.toString())
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
+            usersAndPet.forEach {userAndPet ->
+                Text(text = userAndPet.user.userId.toString())
+                Text(text = "${userAndPet.user.username} has a pet named ${userAndPet.pet.name}")
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }

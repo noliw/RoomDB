@@ -27,4 +27,8 @@ class UserRepository @Inject constructor(
     suspend fun insertPet(pet: Pet){
         petDao.upsertPet(pet = pet)
     }
+
+     suspend fun getUserAndPet(): List<UserAndPet>{
+       return userDao.getUserAndPet()
+    }
 }

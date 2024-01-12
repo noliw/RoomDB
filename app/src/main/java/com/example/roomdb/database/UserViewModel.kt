@@ -23,6 +23,9 @@ class UserViewModel @Inject constructor(
     private val _users = MutableStateFlow<List<User>>(emptyList())
     val users: StateFlow<List<User>> get() = _users.asStateFlow()
 
+    private val _usersAndPets = MutableStateFlow<List<UserAndPet>>(emptyList())
+    val usersAndPets: StateFlow<List<UserAndPet>> get() = _usersAndPets.asStateFlow()
+
     val flowUsers: Flow<List<User>> = userRepository.getAllObsUsers()
     fun insertUser(user: User) {
         viewModelScope.launch {
@@ -64,6 +67,14 @@ class UserViewModel @Inject constructor(
             val pet = Pet(name = petName, userOwnerId = userId)
             userRepository.insertPet(pet)
         }
+    }
+
+    fun getUserAndPet() {
+        viewModelScope.launch {
+            val retreivedUserAndPet = userRepository.getUserAndPet()
+            _usersAndPets.value = retreivedUserAndPet
+        }
+
     }
 
 

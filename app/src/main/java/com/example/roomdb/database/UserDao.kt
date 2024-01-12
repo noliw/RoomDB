@@ -25,5 +25,8 @@ interface UserDao {
     @Query("SELECT * FROM User")
     fun getAllObsUsers(): Flow<List<User>>
 
+    @Query("SELECT * FROM User")
+    suspend fun getUserAndPet(): List<UserAndPet>
+
 
 }
