@@ -1,4 +1,4 @@
-package com.example.roomdb
+package com.example.roomdb.database
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

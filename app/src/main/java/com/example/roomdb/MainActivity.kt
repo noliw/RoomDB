@@ -1,24 +1,24 @@
 package com.example.roomdb
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.annotation.RequiresApi
+import com.example.roomdb.database.UserAndPetScreen
+import com.example.roomdb.database.UserScreen
 import com.example.roomdb.ui.theme.RoomDBTheme
-import com.example.w4storage.day2Room.UserScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RoomDBTheme {
                 UserScreen()
+//                UserAndPetScreen()
             }
 
         }
