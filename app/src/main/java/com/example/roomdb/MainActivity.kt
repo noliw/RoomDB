@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import com.example.roomdb.database.UserAndPetScreen
 import com.example.roomdb.database.UserScreen
+import com.example.roomdb.file_storage.FileStorageScreen
 import com.example.roomdb.ui.theme.RoomDBTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,8 +18,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RoomDBTheme {
-                UserScreen()
+//                UserScreen()
 //                UserAndPetScreen()
+                FileStorageScreen()
             }
 
         }
